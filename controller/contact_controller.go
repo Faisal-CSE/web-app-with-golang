@@ -28,5 +28,8 @@ func ContactController(w http.ResponseWriter, r *http.Request) {
 	// do something with details
 	_ = details
 
-	tmpl.Execute(w, struct{ Success bool }{true})
+	tmpl.Execute(w, struct {
+		Success bool
+		Data    ContactDetails
+	}{true, details})
 }

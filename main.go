@@ -24,7 +24,7 @@ func main() {
 
 	route.HandleFunc("/", controller.IndexController).Methods("GET")
 	route.HandleFunc("/login", controller.LoginController).Methods("GET")
-	route.HandleFunc("/contact", controller.ContactController).Methods("GET")
+	route.HandleFunc("/contact", controller.ContactController)
 	route.HandleFunc("/test", controller.DummyController)
 
 	errListener := http.ListenAndServe(":"+port, route)

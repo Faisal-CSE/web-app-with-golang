@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/gorilla/mux"
 	"github.com/joho/godotenv"
 	"github.com/web-app-with-golang/controller"
 	"log"
@@ -19,13 +20,14 @@ func main() {
 		port = "8080"
 	}
 
-	mux := http.NewServeMux()
+	route := mux.NewRouter()
 
-	mux.HandleFunc("/", controller.IndexController)
-	mux.HandleFunc("/login", controller.LoginController)
-	mux.HandleFunc("/contact", controller.ContactController)
+	route.HandleFunc("/", controller.IndexController).Methods("GET")
+	route.HandleFunc("/login", controller.LoginController).Methods("GET")
+	route.HandleFunc("/contact", controller.ContactController).Methods("GET")
+	route.HandleFunc("/test", controller.DummyController)
 
-	errListener := http.ListenAndServe(":"+port, mux)
+	errListener := http.ListenAndServe(":"+port, route)
 	if errListener != nil {
 		return
 	}

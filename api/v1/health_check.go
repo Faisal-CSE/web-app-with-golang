@@ -19,8 +19,5 @@ func SampleHealthCheckAPI(w http.ResponseWriter, _ *http.Request) {
 		{Id: "000000001", Title: "Sample Article 1", Desc: "Article Description 1", Content: "Article Content 1"},
 		{Id: "000000002", Title: "Sample Article 2", Desc: "Article Description 2", Content: "Article Content 2"},
 	}
-	err := json.NewEncoder(w).Encode(Articles)
-	if err != nil {
-		return
-	}
+	_ = json.NewEncoder(w).Encode(Articles)
 }

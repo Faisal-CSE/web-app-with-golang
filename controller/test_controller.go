@@ -7,7 +7,7 @@ import (
 )
 
 func DummyController(w http.ResponseWriter, r *http.Request) {
-	r.ParseForm() //Parse url parameters passed, then parse the response packet for the POST body (request body)
+	_ = r.ParseForm() //Parse url parameters passed, then parse the response packet for the POST body (request body)
 	// attention: If you do not call ParseForm method, the following data can not be obtained form
 	fmt.Println(r.Form) // print information on server side.
 	fmt.Println("path", r.URL.Path)
@@ -17,5 +17,5 @@ func DummyController(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("key:", k)
 		fmt.Println("val:", strings.Join(v, ""))
 	}
-	fmt.Fprintf(w, "Hello astaxie!") // write data to response
+	_, _ = fmt.Fprintf(w, "Hello astaxie!") // write data to response
 }

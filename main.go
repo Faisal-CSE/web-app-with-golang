@@ -9,6 +9,10 @@ import (
 	"net/http"
 )
 
+func faviconHandler(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "./favicon.ico")
+}
+
 func main() {
 	var strAPIVersion1 string
 
@@ -19,16 +23,12 @@ func main() {
 
 	route := mux.NewRouter()
 
-	////route := http.NewServeMux()
-	//// Create a file server which serves files out of the "./assets" directory.
-	//// Note that the path given to the http.Dir function is relative to the project
-	//// directory root.
-	//fs := http.FileServer(http.Dir("./assets/"))
-	//
-	//// Use the mux.Handle() function to register the file server as the handler for
-	//// all URL paths that start with "/static/". For matching paths, we strip the
-	//// "/static" prefix before the request reaches the file server.
-	//route.Handle("/static/", http.StripPrefix("/static", fs))
+	//Handle fav icon
+	route.HandleFunc("/favicon.ico", faviconHandler)
+
+	//Handle static files
+	fs := http.FileServer(http.Dir("./assets/"))
+	route.PathPrefix("/static/").Handler(http.StripPrefix("/static/", fs))
 
 	route.HandleFunc("/", controller.IndexController).Methods(http.MethodGet)
 	route.HandleFunc("/login", controller.LoginController)

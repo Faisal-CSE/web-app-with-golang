@@ -9,6 +9,10 @@ import (
 	"net/http"
 )
 
+func faviconHandler(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "./favicon.ico")
+}
+
 func main() {
 	var strAPIVersion1 string
 
@@ -18,6 +22,9 @@ func main() {
 	}
 
 	route := mux.NewRouter()
+
+	//Handle fav icon
+	route.HandleFunc("/favicon.ico", faviconHandler)
 
 	//Handle static files
 	fs := http.FileServer(http.Dir("./assets/"))

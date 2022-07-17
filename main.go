@@ -31,7 +31,9 @@ func main() {
 	route.PathPrefix("/static/").Handler(http.StripPrefix("/static/", fs))
 
 	route.HandleFunc("/", controller.IndexController).Methods(http.MethodGet)
+	route.HandleFunc("/register", controller.RegistrationController)
 	route.HandleFunc("/login", controller.LoginController)
+	route.HandleFunc("/pass-forgot", controller.PasswordForgotController)
 	route.HandleFunc("/contact", controller.ContactController)
 	route.HandleFunc("/test", controller.DummyController)
 

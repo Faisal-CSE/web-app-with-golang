@@ -7,7 +7,7 @@ import (
 )
 
 func LoginController(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("method:", r.Method) //get request method
+	//fmt.Println("method:", r.Method) //get request method
 	if r.Method == "GET" {
 		t, _ := template.ParseFiles("templates/login_form.html")
 		t.Execute(w, nil)

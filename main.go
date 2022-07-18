@@ -2,8 +2,10 @@ package main
 
 import (
 	"github.com/gorilla/mux"
+	_ "github.com/lib/pq"
 	v1API "github.com/web-app-with-golang/api/v1"
 	"github.com/web-app-with-golang/controller"
+	"github.com/web-app-with-golang/database"
 	env "github.com/web-app-with-golang/project_env"
 	"log"
 	"net/http"
@@ -15,6 +17,13 @@ func faviconHandler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	var strAPIVersion1 string
+
+	//DB CONNECTION
+	pgConnection := database.PostgresDbConnection()
+	if pgConnection == nil {
+		log.Fatal("Database connection failed!")
+		return
+	}
 
 	port := env.GoDotEnvVariable("PORT")
 	if port == "" {

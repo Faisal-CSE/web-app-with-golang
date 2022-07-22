@@ -5,7 +5,22 @@ import (
 	"log"
 )
 
+func GetRecordCount() {
+	var count int
+
+	err := db.QueryRow("SELECT COUNT(*) FROM clientes").Scan(&count)
+	switch {
+	case err != nil:
+		log.Fatal(err)
+	default:
+		fmt.Printf("Number of rows are %v\n", count)
+	}
+}
+
 func GetRecordByID(Id int) {
+	if Id < 0 {
+		Id = 0
+	}
 	SQL := `SELECT "id","name" FROM "clientes" WHERE id = $1`
 
 	rows, err := db.Queryx(SQL, Id)

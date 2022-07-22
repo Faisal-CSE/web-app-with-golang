@@ -27,6 +27,6 @@ func ListRecords(page int) {
 			log.Println(err)
 			return
 		}
-		fmt.Printf("ID: %v\tNome: %v\n", p.ID, p.Name)
+		fmt.Printf("ID: %v\tClient Name: %v\n", p.ID, p.Name)
 	}
 }

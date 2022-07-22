@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/gorilla/mux"
+	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq"
 	v1API "github.com/web-app-with-golang/api/v1"
 	"github.com/web-app-with-golang/controller"
@@ -24,6 +25,13 @@ func main() {
 		log.Fatal("Database connection failed!")
 		return
 	}
+
+	defer func(pgConnection *sqlx.DB) {
+		err := pgConnection.Close()
+		if err != nil {
+			log.Println("DB connection closed error!")
+		}
+	}(pgConnection)
 
 	port := env.GoDotEnvVariable("PORT")
 	if port == "" {

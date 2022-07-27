@@ -51,3 +51,30 @@ curl -X POST -H "Content-Type: application/json" \
 ```bash
 curl -X POST -F 'image=@/home/user/Pictures/wallpaper.jpg' https://example.com/upload.go
 ```
+---
+
+#### FIle upload process
+`Simple HTML Example Code`
+```html
+<html>
+<head>
+   	<title>Upload file</title>
+</head>
+<body>
+<form enctype="multipart/form-data" action="http://127.0.0.1:9090/upload" method="post">
+	<input type="file" name="uploadfile" />
+	<input type="hidden" name="token" value="{{.}}"/>
+	<input type="submit" value="upload" />
+</form>
+</body>
+</html>
+```
+
+
+
+
+
+
+
+
+

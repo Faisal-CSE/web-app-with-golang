@@ -9,3 +9,5 @@ require (
 )
 
 require github.com/jmoiron/sqlx v1.3.5
+
+require github.com/jasonlvhit/gocron v0.0.1 // indirect

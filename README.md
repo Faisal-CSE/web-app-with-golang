@@ -106,6 +106,34 @@ func upload(w http.ResponseWriter, r *http.Request) {
 }
 ```
 
+---
+#### periodic task management using golang 
+##### First install the gocorn package to use periodic task management 
+
+```shell
+go get github.com/jasonlvhit/gocron
+```
+then execute those line of codes
+```go
+package main
+
+import (
+	"fmt"
+	"github.com/jasonlvhit/gocron"
+)
+
+func myTask() {
+	fmt.Println("This task will run periodically")
+}
+func executeCronJob() {
+    gocron.Every(1).Second().Do(myTask)
+    <- gocron.Start()
+}
+func main() {
+    go executeCronJob()
+}
+```
+
 
 
 

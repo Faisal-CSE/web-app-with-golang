@@ -7,7 +7,6 @@ import (
 	v1API "github.com/web-app-with-golang/api/v1"
 	"github.com/web-app-with-golang/controller"
 	"github.com/web-app-with-golang/database"
-	ptm "github.com/web-app-with-golang/periodic_task_manager"
 	env "github.com/web-app-with-golang/project_env"
 	"log"
 	"net/http"
@@ -40,7 +39,7 @@ func main() {
 	}
 
 	// TODO SET A PERIODIC TASK FOR EXAMPLE
-	ptm.ExecuteACronJob()
+	//ptm.ExecuteACronJob()
 
 	route := mux.NewRouter()
 
